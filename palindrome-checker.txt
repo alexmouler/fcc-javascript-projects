@@ -1,0 +1,14 @@
+function palindrome(str) {
+  //remove non-alphanumeric characters
+  let newStr = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
+  //check for palindromes with nested loops
+  let end = 0
+  for (let start = 0; start < newStr.length; start++) {
+    end = newStr.length - 1 - start
+    if (newStr[start] !== newStr[end])
+      return false
+  }
+  return true;
+}
+
+palindrome("eye");

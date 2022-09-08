@@ -1,0 +1,44 @@
+function telephoneCheck(str) {
+  //non-digit/space/-/() characters fail
+  if (/[^0-9 ()-]/.test(str)) {
+    return false
+  }
+  //first and last characters must be digits
+  else if (/^[^\d(]/.test(str) || /[\D]$/.test(str)) {
+    return false
+  }
+  //less than 10 or more than 11 digits fail
+  let digitsOnly = str.replaceAll(/[\D]/g, '')
+  if (digitsOnly.length < 10 || digitsOnly.length > 11) {
+    return false
+  }
+  //if 11 digits, first must be 1
+  else if (digitsOnly.length == 11 && digitsOnly[0] != 1) {
+    return false
+  }
+  //consistency of parentheses
+  let left = str.search(/[(]/)
+  let right = str.search(/[)]/)
+  if (left > -1 && right == -1 || left == -1 && right > -1) {
+    return false
+  }
+  else if (left > -1 && right != left + 4) {
+    return false
+  }
+  //digits must be separated into groups of 1/3/3/4
+  else {
+    for (let i = 0; i < str.length; i++) {
+      if (!/( \()/.test(str) && //allows for numbers like 1 (555) ...
+      /[ ()-]/.test(str[i]) &&    //if there are less than 3 digits
+      (/[ ()-]/.test(str[i+1]) || //between spaces/parentheses/dashes
+      /[ ()-]/.test(str[i+2]) ||  //ex: 55-55 ...
+      /[ ()-]/.test(str[i+3]))) {
+        console.log("fail 7")
+        return false
+      }
+    }
+  }
+  return true;
+}
+
+telephoneCheck("1 (555) 555-5555");

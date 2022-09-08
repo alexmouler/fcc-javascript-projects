@@ -1,0 +1,156 @@
+function checkCashRegister(price, cash, cid) {
+  let change = [];
+  let newCid = JSON.parse(JSON.stringify(cid));
+  let changeNum = cash - price;
+  
+  if (Math.floor(changeNum / 100) > 0
+    && newCid[8][1] > 0) {
+      if (changeNum >= newCid[8][1]) {
+        change.push(["ONE HUNDRED", newCid[8][1]])
+        changeNum -= newCid[8][1]
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[8][1] = 0
+      }
+      else {
+        change.push(["ONE HUNDRED", Math.floor(changeNum / 100) * 100])
+        changeNum -= Math.floor(changeNum / 100) * 100
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[5][1] -= Math.floor(changeNum / 100) * 100
+      }
+  }
+  if (Math.floor(changeNum / 20) > 0
+    && newCid[7][1] > 0) {
+      if (changeNum >= newCid[7][1]) {
+        change.push(["TWENTY", newCid[7][1]])
+        changeNum -= newCid[7][1]
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[7][1] = 0
+      }
+      else {
+        change.push(["TWENTY", Math.floor(changeNum / 20) * 20])
+        changeNum -= Math.floor(changeNum / 20) * 20
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[7][1] -= Math.floor(changeNum / 20) * 20
+      }
+  }
+  if (Math.floor(changeNum / 10) > 0
+    && newCid[6][1] > 0) {
+      if (changeNum >= newCid[6][1]) {
+        change.push(["TEN", newCid[6][1]])
+        changeNum -= newCid[6][1]
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[6][1] = 0
+      }
+      else {
+        change.push(["TEN", Math.floor(changeNum / 10) * 10])
+        changeNum -= Math.floor(changeNum / 10) * 10
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[6][1] -= Math.floor(changeNum / 10) * 10
+      }
+  }
+  if (Math.floor(changeNum / 5) > 0
+    && newCid[5][1] > 0) {
+      if (changeNum >= newCid[5][1]) {
+        change.push(["FIVE", newCid[5][1]])
+        changeNum -= newCid[5][1]
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[5][1] = 0
+      }
+      else {
+        change.push(["FIVE", Math.floor(changeNum / 5) * 5])
+        changeNum -= Math.floor(changeNum / 5) * 5
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[5][1] -= Math.floor(changeNum / 5) * 5
+      }
+  }
+  if (Math.floor(changeNum) > 0
+    && newCid[4][1] > 0) {
+      if (changeNum >= newCid[4][1]) {
+        change.push(["ONE", newCid[4][1]])
+        changeNum -= newCid[4][1]
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[4][1] = 0
+      }
+      else {
+        console.log("here")
+        change.push(["ONE", Math.floor(changeNum)])
+        changeNum -= Math.floor(changeNum)
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[4][1] -= Math.floor(changeNum)
+      }
+  }
+  if (Math.floor(changeNum * 4) > 0
+    && newCid[3][1] > 0) {
+      if (changeNum >= newCid[3][1]) {
+        console.log("here")
+        change.push(["QUARTER", newCid[3][1]])
+        changeNum -= newCid[3][1]
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[3][1] = 0
+      }
+      else {
+        change.push(["QUARTER", Math.floor(changeNum * 4) / 4])
+        changeNum -= Math.floor(changeNum * 4) / 4
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[3][1] -= Math.floor(changeNum * 4) / 4
+      }
+  }
+  if (Math.floor(changeNum * 10) > 0
+    && newCid[2][1] > 0) {
+      if (changeNum >= newCid[2][1]) {
+        change.push(["DIME", newCid[2][1]])
+        changeNum -= newCid[2][1]
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[2][1] = 0
+      }
+      else {
+        change.push(["DIME", Math.floor(changeNum * 10) / 10])
+        changeNum -= Math.floor(changeNum * 10) / 10
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[2][1] -= Math.floor(changeNum * 10) / 10
+      }
+  }
+  if (Math.floor(changeNum * 20) > 0
+    && newCid[1][1] > 0) {
+      if (changeNum >= newCid[1][1]) {
+        change.push(["NICKEL", newCid[1][1]])
+        changeNum -= newCid[1][1]
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[1][1] = 0
+      }
+      else {
+        change.push(["NICKEL", Math.floor(changeNum * 20) / 20])
+        changeNum -= Math.floor(changeNum * 20) / 20
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[1][1] -= Math.floor(changeNum * 20) / 20
+      }
+  }
+  if (Math.floor(changeNum * 100) > 0
+    && newCid[0][1] > 0) {
+      if (changeNum >= newCid[0][1]) {
+        change.push(["PENNY", newCid[0][1]])
+        changeNum -= newCid[0][1]
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[0][1] = 0
+      }
+      else {
+        change.push(["PENNY", Math.floor(changeNum * 100) / 100])
+        changeNum -= Math.floor(changeNum * 100) / 100
+        changeNum = Math.round(changeNum * 100)/100
+        newCid[0][1] -= Math.floor(changeNum * 100) / 100
+      }
+  }
+  if (changeNum > 0) {
+    return {status: "INSUFFICIENT_FUNDS", change: []}
+  }
+  let cidCount = 0
+  for (let i = 0; i < newCid.length; i++) {
+    cidCount += newCid[i][1]
+  }
+  if (cidCount == 0) {
+    return {status: "CLOSED", change: cid}
+  }
+  return {status: "OPEN", change: change};
+}
+
+checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])

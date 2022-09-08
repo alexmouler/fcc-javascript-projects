@@ -1,0 +1,21 @@
+function rot13(str) {
+  let newStr = ""
+  let charCode = 0
+  let newCode = 0
+  for (let i = 0; i < str.length; i++) {
+    charCode = str.charCodeAt(i)
+    if (charCode < 65 || charCode > 90) { //non-alphabetic
+      newStr += str[i] //add spaces and punctuation as is
+    }
+    else {
+      newCode = charCode - 13
+      if (newCode < 65) {
+        newCode = 90 - 65 + newCode + 1 //wrap back around from Z
+      }
+      newStr += String.fromCharCode(newCode)
+    }
+  }
+  return newStr;
+}
+
+rot13("SERR PBQR PNZC");

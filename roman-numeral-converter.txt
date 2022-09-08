@@ -1,0 +1,62 @@
+function convertToRoman(num) {
+  //subtract the largest value until num is 0
+  let rem = num
+  let roman = ""
+  while (rem > 0) {
+    while (rem >= 1000) {
+      roman += "M"
+      rem -= 1000
+    }
+    if (rem >= 900) {
+      roman += "CM"
+      rem -= 900
+    }
+    else if (rem >= 500) {
+      roman += "D"
+      rem -= 500
+    }
+    else if (rem >= 400) {
+      roman += "CD"
+      rem -= 400
+    }
+    else if (rem >= 100) {
+      roman += "C"
+      rem -= 100
+    }
+    else if (rem >= 90) {
+      roman += "XC"
+      rem -= 90
+    }
+    else if (rem >= 50) {
+      roman += "L"
+      rem -= 50
+    }
+    else if (rem >= 40) {
+      roman += "XL"
+      rem -= 40
+    }
+    else if (rem >= 10) {
+      roman += "X"
+      rem -= 10
+    }
+    else if (rem >= 9) {
+      roman += "IX"
+      rem -= 9
+    }
+    else if (rem >= 5) {
+      roman += "V"
+      rem -= 5
+    }
+    else if (rem >= 4) {
+      roman += "IV"
+      rem -= 4
+    }
+    else if (rem >= 1) {
+      roman += "I"
+      rem--
+    }
+  }
+ return roman;
+}
+
+convertToRoman(36);
